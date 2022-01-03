@@ -1,2 +1,2 @@
 export { Header } from "./Layout";
-export { Input } from "./UI";
+export { Input, Modal } from "./UI";
