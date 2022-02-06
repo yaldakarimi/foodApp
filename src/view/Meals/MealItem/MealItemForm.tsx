@@ -1,5 +1,4 @@
 import { useRef } from "react";
-
 import { Input } from "components";
 import styles from "./MealItemForm.module.css";
 
