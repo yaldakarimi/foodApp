@@ -26,7 +26,7 @@ const cartReducer = (state: InitialState, action: ActionModel) => {
     case "ADD":
       const updatedItems = state.items.concat(action.payload);
       const updatedTotalAmount =
-        state.totalAmount + action.payload.price * action.payload.inputAmount;
+        state.totalAmount + action.payload.price * action.payload.amount;
 
       return {
         items: updatedItems,
@@ -45,7 +45,6 @@ const CartProvider = ({ children }: Props) => {
 
   // These two functions are called when a respective button is clicked by the user and their only responsibility is to send an action to the reducer function to handle the state
   const addItemToTheCart = (item: MealModel) => {
-
     dispatchCartAction({ type: "ADD", payload: item });
   };
 

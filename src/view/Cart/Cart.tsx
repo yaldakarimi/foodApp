@@ -1,3 +1,6 @@
+import { useContext } from "react";
+import { CartContext } from "app/store";
+import { CartItemModel } from "app/types";
 import { Modal } from "components";
 import styles from "./Cart.module.css";
 
@@ -6,17 +9,18 @@ interface Props {
 }
 
 const Cart = ({ onModalClose }: Props) => {
-  const cartItems = [{ id: "c1", name: "sushi", amount: "2", price: 12.99 }];
+  const cartCtx = useContext(CartContext);
+
   return (
     <Modal onClose={onModalClose}>
       <ul className={styles.cartItems}>
-        {cartItems.map((item) => (
+        {cartCtx.items.map((item: CartItemModel) => (
           <li key={item.id}>{item.name}</li>
         ))}
       </ul>
       <div className={styles.total}>
         <span>Total Amount</span>
-        <span>35.62</span>
+        <span>{cartCtx.totalAmount.toFixed(2)}</span>
       </div>
       <div className={styles.actions}>
         <button className={styles.buttonAlt} onClick={onModalClose}>

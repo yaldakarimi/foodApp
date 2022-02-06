@@ -10,18 +10,11 @@ interface Props {
 
 const HeaderCartButton = ({ onModalOpen }: Props) => {
   const cartCtx = useContext(CartContext);
-  const {items} = cartCtx
+  const { items } = cartCtx;
 
-
-
-  const numberOfCartItems = items.reduce(
-    (total, current: CartItemModel) => {
-   
-      return total + current.inputAmount;
-    },
-    0
-  );
-
+  const numberOfCartItems = items.reduce((total, current: CartItemModel) => {
+    return total + current.amount;
+  }, 0);
 
   return (
     <button className={styles.button} onClick={onModalOpen}>

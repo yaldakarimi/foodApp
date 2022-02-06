@@ -5,11 +5,8 @@ export interface MealModel {
   price: number;
 }
 
-export interface CartItemModel {
-  id: string;
-  name: string;
-  price: number;
-  inputAmount: number;
+export interface CartItemModel extends MealModel {
+  amount: number;
 }
 
 export interface CartContextModel {

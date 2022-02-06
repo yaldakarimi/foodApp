@@ -12,12 +12,8 @@ const MealItem = ({ data }: Props) => {
 
   const cartCtx = useContext(CartContext);
 
-
-
-  const onAddToCart = (inputAmount: number) => {
-
-    cartCtx.addItem({ ...data, inputAmount });
-
+  const onAddToCart = (amount: number) => {
+    cartCtx.addItem({ ...data, amount });
   };
   return (
     <li className={styles.meal}>
