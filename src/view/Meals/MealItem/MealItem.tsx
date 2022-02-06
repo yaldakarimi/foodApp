@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import { CartContext } from "app/store";
 import { MealModel } from "app/types";
 import MealItemForm from "./MealItemForm";
 import styles from "./MealItem.module.css";
@@ -7,6 +9,16 @@ interface Props {
 }
 const MealItem = ({ data }: Props) => {
   const price = `$${data.price.toFixed(2)}`;
+
+  const cartCtx = useContext(CartContext);
+
+
+
+  const onAddToCart = (inputAmount: number) => {
+
+    cartCtx.addItem({ ...data, inputAmount });
+
+  };
   return (
     <li className={styles.meal}>
       <div>
@@ -15,7 +27,7 @@ const MealItem = ({ data }: Props) => {
         <div className={styles.price}>{price}</div>
       </div>
       <div>
-        <MealItemForm id={data.id} />
+        <MealItemForm id={data.id} onAdd={onAddToCart} />
       </div>
     </li>
   );

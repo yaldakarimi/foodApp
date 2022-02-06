@@ -1,14 +1,31 @@
+import { useRef } from "react";
+
 import { Input } from "components";
 import styles from "./MealItemForm.module.css";
 
 interface Props {
   id: string;
+  onAdd : (amount:number ) => void 
 }
 
-const MealItemForm = ({ id }: Props) => {
+const MealItemForm = ({ id, onAdd }: Props) => {
+  const amountInputRef = useRef<HTMLInputElement>();
+
+ 
+
+
+  const onSubmitHandler = (e: any) => {
+    e.preventDefault();
+    if(amountInputRef.current?.value){
+      onAdd(+amountInputRef.current?.valueAsNumber)
+    }
+
+
+  };
   return (
-    <form className={styles.form}>
+    <form className={styles.form} onSubmit={onSubmitHandler}>
       <Input
+        ref={amountInputRef}
         label="Amount"
         input={{
           type: "number",
@@ -19,7 +36,7 @@ const MealItemForm = ({ id }: Props) => {
           defaultValue: "1",
         }}
       />
-      <button>+ Add</button>
+      <button type="submit">+ Add</button>
     </form>
   );
 };
